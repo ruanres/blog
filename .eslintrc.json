@@ -20,6 +20,8 @@
     "rules": {
         "react/jsx-filename-extension": "off",
         "react/prop-types": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-use-before-define": "off"
     }
 }
