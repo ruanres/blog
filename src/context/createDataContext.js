@@ -8,8 +8,7 @@ export default (reducer, actions, initialState) => {
 
     const dispatchableActions = Object.keys(actions).reduce(
       (accActions, actionName) => {
-        const actionObj = actions[actionName]();
-        const action = () => dispatch(actionObj);
+        const action = (...args) => dispatch(actions[actionName](...args));
         return { ...accActions, [actionName]: action };
       }, {},
     );
