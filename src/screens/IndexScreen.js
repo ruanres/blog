@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   View, Text, FlatList, Button, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { Context } from '../context/BlogContext';
+import { useBlogContext } from '../context/BlogContext';
 
 const IndexScreen = () => {
-  const { state, addBlogPost, removeBlogPost } = useContext(Context);
+  const { state, addBlogPost, removeBlogPost } = useBlogContext();
 
   return (
     <View>

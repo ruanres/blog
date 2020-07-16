@@ -6,9 +6,9 @@ export default (reducer, actions, initialState) => {
   const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const dispatchableActions = Object.keys(actions).reduce(
-      (accActions, actionName) => {
-        const action = (...args) => dispatch(actions[actionName](...args));
+    const dispatchableActions = Object.entries(actions).reduce(
+      (accActions, [actionName, actionFunc]) => {
+        const action = (...args) => dispatch(actionFunc(...args));
         return { ...accActions, [actionName]: action };
       }, {},
     );

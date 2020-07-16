@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import createDataContext from './createDataContext';
 
 const getId = () => Math.floor(Math.random() * 999).toString();
@@ -20,4 +21,17 @@ const addBlogPost = () => ({ type: 'add_blogPost' });
 const removeBlogPost = (id) => ({ type: 'remove_blogPost', payload: { id } });
 
 const actions = { addBlogPost, removeBlogPost };
-export const { Context, Provider } = createDataContext(blogReducer, actions, []);
+
+const { Context, Provider } = createDataContext(blogReducer, actions, []);
+
+export const BlogProvider = Provider;
+
+export const useBlogContext = () => {
+  const context = useContext(Context);
+
+  if (context === undefined) {
+    throw new Error('useBlogContext must be used within a BlogProvider');
+  }
+
+  return context;
+};
