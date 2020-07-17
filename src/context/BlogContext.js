@@ -7,7 +7,7 @@ const blogReducer = (state, action) => {
   switch (action.type) {
     case 'add_blogPost': {
       const id = getId();
-      return [...state, { id, title: `Blog Post #${id}` }];
+      return [...state, { id, ...action.payload }];
     }
     case 'remove_blogPost':
       return state.filter((post) => post.id !== action.payload.id);
@@ -16,7 +16,10 @@ const blogReducer = (state, action) => {
   }
 };
 
-const addBlogPost = () => ({ type: 'add_blogPost' });
+const addBlogPost = ({ title, content }) => ({
+  type: 'add_blogPost',
+  payload: { title, content },
+});
 
 const removeBlogPost = (id) => ({ type: 'remove_blogPost', payload: { id } });
 

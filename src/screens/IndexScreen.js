@@ -33,7 +33,21 @@ const IndexScreen = ({ navigation }) => {
   );
 };
 
+IndexScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerRight: () => (
+      <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+        <Feather name="plus" style={styles.plusIcon} />
+      </TouchableOpacity>
+    ),
+  };
+};
+
 const styles = StyleSheet.create({
+  plusIcon: {
+    marginRight: 10,
+    fontSize: 30,
+  },
   post: {
     flexDirection: 'row',
     justifyContent: 'space-between',
