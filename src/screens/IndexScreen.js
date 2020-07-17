@@ -1,16 +1,15 @@
 import React from 'react';
 import {
-  View, Text, FlatList, Button, StyleSheet, TouchableOpacity,
+  View, Text, FlatList, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useBlogContext } from '../context/BlogContext';
 
 const IndexScreen = ({ navigation }) => {
-  const { state, addBlogPost, removeBlogPost } = useBlogContext();
+  const { state, removeBlogPost } = useBlogContext();
 
   return (
     <View>
-      <Button title="Add Post" onPress={addBlogPost} />
       <FlatList
         data={state}
         keyExtractor={(post) => post.id}

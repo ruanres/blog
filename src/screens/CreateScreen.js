@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { useBlogContext } from '../context/BlogContext';
 
-const CreateScreen = () => {
+const CreateScreen = ({ navigation }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { addBlogPost } = useBlogContext();
@@ -13,6 +13,7 @@ const CreateScreen = () => {
     addBlogPost({ title, content });
     setTitle('');
     setContent('');
+    navigation.navigate('Index');
   };
 
   return (
