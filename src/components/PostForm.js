@@ -3,9 +3,9 @@ import {
   View, Text, TextInput, StyleSheet, Button,
 } from 'react-native';
 
-const PostForm = ({ onSubmit }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+const PostForm = ({ values, onSubmit }) => {
+  const [title, setTitle] = useState(values?.title || '');
+  const [content, setContent] = useState(values?.content || '');
 
   const onPress = () => {
     onSubmit(title, content);

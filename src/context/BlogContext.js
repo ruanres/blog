@@ -4,13 +4,23 @@ import createDataContext from './createDataContext';
 const getId = () => Math.floor(Math.random() * 999).toString();
 
 const blogReducer = (state, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  const filterById = (id) => state.filter((post) => post.id !== id);
+
+  switch (type) {
     case 'add_blogPost': {
       const id = getId();
-      return [...state, { id, ...action.payload }];
+      return [...state, { id, ...payload }];
     }
+
     case 'remove_blogPost':
-      return state.filter((post) => post.id !== action.payload.id);
+      return filterById(payload.id);
+
+    case 'update_blogPost': {
+      const filteredPosts = filterById(payload.id);
+      return [...filteredPosts, { ...payload }];
+    }
+
     default:
       return state;
   }
@@ -21,10 +31,16 @@ const addBlogPost = ({ title, content }) => ({
   payload: { title, content },
 });
 
+const updateBlogPost = ({ title, content, id }) => ({
+  type: 'update_blogPost',
+  payload: { id, title, content },
+});
+
 const removeBlogPost = (id) => ({ type: 'remove_blogPost', payload: { id } });
 
-const actions = { addBlogPost, removeBlogPost };
-
+const actions = {
+  addBlogPost, removeBlogPost, updateBlogPost,
+};
 const { Context, Provider } = createDataContext(blogReducer, actions, []);
 
 export const BlogProvider = Provider;
