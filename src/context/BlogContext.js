@@ -38,10 +38,11 @@ const updateBlogPost = ({ title, content, id }) => ({
 
 const removeBlogPost = (id) => ({ type: 'remove_blogPost', payload: { id } });
 
-const actions = {
-  addBlogPost, removeBlogPost, updateBlogPost,
-};
-const { Context, Provider } = createDataContext(blogReducer, actions, []);
+const { Context, Provider } = createDataContext(
+  blogReducer,
+  { addBlogPost, removeBlogPost, updateBlogPost },
+  [{ id: '1', title: 'default title', content: 'default content' }],
+);
 
 export const BlogProvider = Provider;
 
