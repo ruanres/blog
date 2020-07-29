@@ -4,8 +4,8 @@ import {
 } from 'react-native';
 
 const PostForm = ({ values, onSubmit }) => {
-  const [title, setTitle] = useState(values?.title || '');
-  const [content, setContent] = useState(values?.content || '');
+  const [title, setTitle] = useState(values.title);
+  const [content, setContent] = useState(values.content);
 
   const onPress = () => {
     onSubmit(title, content);
@@ -22,6 +22,13 @@ const PostForm = ({ values, onSubmit }) => {
       <Button title="Submit" onPress={onPress} />
     </View>
   );
+};
+
+PostForm.defaultProps = {
+  values: {
+    title: '',
+    content: '',
+  },
 };
 
 const styles = StyleSheet.create({

@@ -9,7 +9,7 @@ const EditScreen = ({ navigation }) => {
 
   const onSubmit = (title, content) => {
     updateBlogPost({ id: post.id, title, content });
-    navigation.navigate('Show');
+    navigation.pop();
   };
 
   return <PostForm onSubmit={onSubmit} values={post} />;
